@@ -84,10 +84,14 @@ const TeamDashboard: React.FC = () => {
           className="w-[200px]"
         />
         <label className="flex items-center">
-          <div>Avatar</div>
+          <div>
+            {
+              avatar ? "Change Avatar" : "Upload Avatar"
+            }
+          </div>
           <input type="file" className="hidden" onChange={handleFileChange} />
-          {avatar && <img src={avatar} alt="Avatar" className="w-8 h-8 rounded-full ml-2" />}
         </label>
+        {avatar && <img src={avatar} alt="Avatar" className="w-8 h-8 rounded-full ml-2" />}
       </div>
       <div className="flex gap-4 my-4 items-center">
         <label>
@@ -102,7 +106,8 @@ const TeamDashboard: React.FC = () => {
             className="border p-[6px] rounded border-gray-300 ml-2"
           />
         </label>
-        <button onClick={handleAddMember} className="bg-blue-500 text-white py-[6px] px-2 rounded">
+        <button onClick={handleAddMember} className={`bg-blue-500 text-white py-[6px] px-2 rounded ${!name || !timeZone ? "opacity-50 cursor-not-allowed" : ""}`}
+          disabled={!name || !timeZone}>
           Add Member
         </button>
       </div>
